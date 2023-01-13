@@ -138,8 +138,8 @@ SetSendBuffer_HookInitialize ENDP
 
 SetSendBuffer_Hook PROC
 
-	;remoted from public source
-  ;this game's send packet stuff is actually difficult to solve! good luck, I found it easier to emulate the entire encryption scheme than calling the in-game method
+  ;removed from public source
+  ;this games send packet stuff is actually difficult to solve! good luck, I found it easier to emulate the entire encryption scheme than calling the in-game method
   
 	jmp lpSetSendBufferReturn
 SetSendBuffer_Hook ENDP
