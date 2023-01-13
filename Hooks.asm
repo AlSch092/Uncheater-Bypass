@@ -152,7 +152,7 @@ SetPositionHook_Init ENDP
 
 PlayerPosition_Hook PROC
 
-	pop r10
+    pop r10
 
     push rax
     push rbx
@@ -170,18 +170,18 @@ PlayerPosition_Hook PROC
     push r13
     push r14
     push r15
-	pushfq
+    pushfq
 
-	sub rsp, 1028h
+    sub rsp, 1028h
 
-	;RCX = PositionComponent
-	mov rcx, rsi
-	call lpPlayerPositionCallback 
+    ;RCX = Vec3
+    mov rcx, rsi
+    call lpPlayerPositionCallback 
 
-	add rsp, 1028h
+    add rsp, 1028h
 
-	popfq
-	pop r15
+    popfq
+    pop r15
     pop r14
     pop r13
     pop r12
@@ -198,20 +198,20 @@ PlayerPosition_Hook PROC
     pop rbx
     pop rax
 
-	movups xmm1, [rsi+200h] ;rsi+200 = BONE Vec3 structure, to move the character you need to move the correct BONE list entry. the game also checks if you're teleporting and logs you to their 'cheat' database
-	jmp lpSetPositionReturn
+    movups xmm1, [rsi+200h] ;rsi+200 = BONE Vec3 structure, to move the character you need to move the correct BONE list entry. the game also checks if you're teleporting and logs you to their 'cheat' database
+    jmp lpSetPositionReturn
 
 PlayerPosition_Hook ENDP
 
 ClientDebugLog_Init PROC
-	mov lpClientDebugLogReturn, rcx
-	mov lpClientDebugLogCallback, rdx 
-	ret
+    mov lpClientDebugLogReturn, rcx
+    mov lpClientDebugLogCallback, rdx 
+    ret
 ClientDebugLog_Init ENDP
 
 ClientDebugLog_Hook PROC
 
-	pop r10
+    pop r10
 
     push rax
     push rbx
@@ -229,16 +229,16 @@ ClientDebugLog_Hook PROC
     push r13
     push r14
     push r15
-	  pushfq
+    pushfq
 
-	  sub rsp, 1028h
-	  mov rcx, rax
-	  call lpClientDebugLogCallback 
+    sub rsp, 1028h
+    mov rcx, rax
+    call lpClientDebugLogCallback 
 
-	  add rsp, 1028h
+    add rsp, 1028h
 
-	  popfq
-	  pop r15
+    popfq
+    pop r15
     pop r14
     pop r13
     pop r12
@@ -256,10 +256,10 @@ ClientDebugLog_Hook PROC
     pop rax
 
 
-	pop r15
-	pop r14
-	pop r12
-	jmp lpClientDebugLogReturn
+    pop r15 ;original bytes
+    pop r14
+    pop r12
+    jmp lpClientDebugLogReturn
 
 ClientDebugLog_Hook ENDP
 
